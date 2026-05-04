@@ -30,6 +30,8 @@ CONF_POSSIBLE_VALUES = "possible_values"
 #                               24V unit: 00.0V/24V/24.5V/25V/25.5V/26V/26.5V/27V/27.5V/28V/28.5V/29V
 #                               48V unit: 00.0V48V/49V/50V/51V/52V/53V/54V/55V/56V/57V/58V
 
+CONF_ENABLE_BYPASS_ON_OVERLOAD = "enable_bypass_on_overload"
+CONF_DISABLE_BYPASS_ON_OVERLOAD = "disable_bypass_on_overload"
 CONF_BATTERY_BULK_VOLTAGE = "battery_bulk_voltage"
 CONF_BATTERY_FLOAT_VOLTAGE = "battery_float_voltage"
 CONF_BATTERY_RECHARGE_VOLTAGE = "battery_recharge_voltage"
@@ -38,8 +40,7 @@ CONF_BATTERY_TYPE = "battery_type"
 CONF_CURRENT_MAX_AC_CHARGING_CURRENT = "current_max_ac_charging_current"
 CONF_CURRENT_MAX_CHARGING_CURRENT = "current_max_charging_current"
 CONF_BATTERY_REDISCHARGE_VOLTAGE = "battery_redischarge_voltage"
-CONF_ENABLE_BYPASS_ON_OVERLOAD = "enable_bypass_on_overload"
-CONF_DISABLE_BYPASS_ON_OVERLOAD = "disable_bypass_on_overload"
+CONF_INPUT_VOLTAGE_RANGE = "input_voltage_range"
 
 TYPES = {
     CONF_BATTERY_BULK_VOLTAGE: (
@@ -86,14 +87,27 @@ TYPES = {
     CONF_BATTERY_UNDER_VOLTAGE: (
         [40.0, 40.1, 42, 43, 44, 45, 46, 47, 48.0],
         "PSDV%02.1f"),
-    CONF_BATTERY_TYPE: ([0, 1, 2], "PBT%02.0f"),
-    CONF_CURRENT_MAX_AC_CHARGING_CURRENT: ([2, 10, 20], "MUCHGC0%02.0f"),
-    CONF_CURRENT_MAX_CHARGING_CURRENT: ([10, 20, 30, 40], "MCHGC0%02.0f"),
-    CONF_OUTPUT_SOURCE_PRIORITY: ([0, 1, 2], "POP%02.0f"),
-    CONF_CHARGER_SOURCE_PRIORITY: ([0, 1, 2, 3], "PCP%02.0f"),
+    CONF_BATTERY_TYPE: (
+	[0, 1, 2], 
+	"PBT%02.0f"),
+    CONF_CURRENT_MAX_AC_CHARGING_CURRENT: (
+	[2, 10, 20], 
+	"MUCHGC0%02.0f"),
+    CONF_CURRENT_MAX_CHARGING_CURRENT: (
+	[10, 20, 30, 40], 
+	"MCHGC0%02.0f"),
+    CONF_OUTPUT_SOURCE_PRIORITY: (
+	[0, 1, 2], 
+	"POP%02.0f"),
+    CONF_CHARGER_SOURCE_PRIORITY: (
+	[0, 1, 2, 3], 
+	"PCP%02.0f"),
     CONF_BATTERY_REDISCHARGE_VOLTAGE: (
         [0, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58],
         "PBDV%02.1f"),
+    CONF_INPUT_VOLTAGE_RANGE: (
+        [0, 1],
+        "PGR%02.0f"),
 }
 
 CONFIG_SCHEMA = PIPSOLAR_COMPONENT_SCHEMA.extend(
