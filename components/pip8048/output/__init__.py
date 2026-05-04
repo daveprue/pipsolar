@@ -41,6 +41,8 @@ CONF_CURRENT_MAX_AC_CHARGING_CURRENT = "current_max_ac_charging_current"
 CONF_CURRENT_MAX_CHARGING_CURRENT = "current_max_charging_current"
 CONF_BATTERY_REDISCHARGE_VOLTAGE = "battery_redischarge_voltage"
 CONF_INPUT_VOLTAGE_RANGE = "input_voltage_range"
+CONF_ENABLE_RESTART_ON_OVERLOAD = "enable_restart_on_overload"
+CONF_DISABLE_RESTART_ON_OVERLOAD = "disable_restart_on_overload"
 
 TYPES = {
     CONF_BATTERY_BULK_VOLTAGE: (
@@ -108,6 +110,12 @@ TYPES = {
     CONF_INPUT_VOLTAGE_RANGE: (
         [0, 1],
         "PGR%02.0f"),
+    CONF_ENABLE_RESTART_ON_OVERLOAD: (
+        [0, 1],
+        "PEu"),
+    CONF_DISABLE_RESTART_ON_OVERLOAD: (
+        [0, 1],
+        "PDu"),
 }
 
 CONFIG_SCHEMA = PIPSOLAR_COMPONENT_SCHEMA.extend(
