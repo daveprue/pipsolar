@@ -39,8 +39,8 @@ CONF_BATTERY_FLOAT_VOLTAGE = "battery_float_voltage"
 CONF_BATTERY_RECHARGE_VOLTAGE = "battery_recharge_voltage"
 CONF_BATTERY_REDISCHARGE_VOLTAGE = "battery_redischarge_voltage"
 CONF_BATTERY_UNDER_VOLTAGE = "battery_under_voltage"
-CONF_CURRENT_MAX_AC_CHARGING_CURRENT = "max_ac_charging_current"
-CONF_CURRENT_MAX_CHARGING_CURRENT = "max_charging_current"
+CONF_MAX_AC_CHARGING_CURRENT = "max_ac_charging_current"
+CONF_MAX_CHARGING_CURRENT = "max_charging_current"
 
 CONF_INPUT_VOLTAGE_RANGE = "input_voltage_range"
 CONF_ENABLE_RESTART_ON_OVERLOAD = "enable_restart_on_overload"
@@ -144,10 +144,10 @@ TYPES = {
     CONF_BATTERY_TYPE: (
 	[0, 1, 2], 
 	"PBT%02.0f"),
-    CONF_CURRENT_MAX_AC_CHARGING_CURRENT: (
+    CONF_MAX_AC_CHARGING_CURRENT: (
         [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150], 
         "MUCHGC%03.0f"),
-    CONF_CURRENT_MAX_CHARGING_CURRENT: (
+    CONF_MAX_CHARGING_CURRENT: (
         [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150], 
         "MCHGC%03.0f"),
     CONF_OUTPUT_SOURCE_PRIORITY: (
