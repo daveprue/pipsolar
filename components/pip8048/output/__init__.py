@@ -55,6 +55,9 @@ CONF_ENABLE_TONES = "enable_tones"
 CONF_DISABLE_TONES = "disable_tones"
 
 TYPES = {
+    CONF_BATTERY_TYPE: (
+	[0, 1, 2, 3, 4, 5, 6, 7, 8], 
+	"PBT%02.0f"),
     CONF_BATTERY_BULK_VOLTAGE: (
         [48.0, 48.1, 48.2, 48.3, 48.4, 48.5, 48.6, 48.7, 48.8, 48.9, 
          49.0, 49.1, 49.2, 49.3, 49.4, 49.5, 49.6, 49.7, 49.8, 49.9, 
@@ -141,9 +144,6 @@ TYPES = {
     CONF_DISABLE_BYPASS_ON_OVERLOAD: (
         [0, 1],
         "PDb"),
-    CONF_BATTERY_TYPE: (
-	[0, 1, 2], 
-	"PBT%02.0f"),
     CONF_MAX_AC_CHARGING_CURRENT: (
         [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150], 
         "MUCHGC%03.0f"),
