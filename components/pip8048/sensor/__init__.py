@@ -59,27 +59,32 @@ CONF_PV_POWER_BALANCE = "pv_power_balance"
 
 CONF_GRID_VOLTAGE = "grid_voltage"
 CONF_GRID_FREQUENCY = "grid_frequency"
+
 CONF_AC_OUTPUT_VOLTAGE = "ac_output_voltage"
 CONF_AC_OUTPUT_FREQUENCY = "ac_output_frequency"
 CONF_AC_OUTPUT_APPARENT_POWER = "ac_output_apparent_power"
 CONF_AC_OUTPUT_ACTIVE_POWER = "ac_output_active_power"
+
 CONF_OUTPUT_LOAD_PERCENT = "output_load_percent"
+CONF_INVERTER_HEAT_SINK_TEMPERATURE = "inverter_heat_sink_temperature"
+
 CONF_BATTERY_CHARGING_CURRENT = "battery_charging_current"
 CONF_BATTERY_CAPACITY_PERCENT = "battery_capacity_percent"
-CONF_INVERTER_HEAT_SINK_TEMPERATURE = "inverter_heat_sink_temperature"
-CONF_PV1_INPUT_CURRENT = "pv1_input_current"
-CONF_PV1_INPUT_VOLTAGE = "pv1_input_voltage"
 CONF_BATTERY_VOLTAGE_SCC = "battery_voltage_scc"
 CONF_BATTERY_DISCHARGE_CURRENT = "battery_discharge_current"
+
 CONF_ADD_SBU_PRIORITY_VERSION = "add_sbu_priority_version"
 CONF_CONFIGURATION_STATUS = "configuration_status"
 CONF_SCC_FIRMWARE_VERSION = "scc_firmware_version"
 CONF_BATTERY_VOLTAGE_OFFSET_FOR_FANS_ON = "battery_voltage_offset_for_fans_on"
 CONF_EEPROM_VERSION = "eeprom_version"
+
 CONF_PV1_CHARGING_POWER = "pv1_charging_power"
+CONF_PV1_INPUT_CURRENT = "pv1_input_current"
+CONF_PV1_INPUT_VOLTAGE = "pv1_input_voltage"
+CONF_PV2_CHARGING_POWER = "pv2_charging_power"
 CONF_PV2_INPUT_CURRENT = "pv2_input_current"
 CONF_PV2_INPUT_VOLTAGE = "pv2_input_voltage"
-CONF_PV2_CHARGING_POWER = "pv2_charging_power"
 
 TYPES = {
     CONF_GRID_RATING_VOLTAGE: sensor.sensor_schema(
