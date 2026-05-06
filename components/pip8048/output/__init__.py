@@ -146,7 +146,7 @@ TYPES = {
         "PDb"),
     CONF_MAX_AC_CHARGING_CURRENT: (
         [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150], 
-        "MUCHGC%04.0f"),
+        "MUCHGC%03.0f"),
     CONF_MAX_CHARGING_CURRENT: (
         [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150], 
         "MNCHGC%03.0f"),
