@@ -417,7 +417,15 @@ void Pipsolar::handle_qpiri_(const char *message) {
   }
 }
 
+
+
+
+
+
+/*
 void Pipsolar::handle_qpigs_(const char *message) {
+
+
   if (this->last_qpigs_) {
     this->last_qpigs_->publish_state(message);
   }
@@ -468,7 +476,45 @@ void Pipsolar::handle_qpigs_(const char *message) {
   this->publish_binary_sensor_(this->get_bit_(device_status_2, 0), this->charging_to_floating_mode_);
   this->publish_binary_sensor_(this->get_bit_(device_status_2, 1), this->switch_on_);
   this->publish_binary_sensor_(this->get_bit_(device_status_2, 2), this->dustproof_installed_);
+
 }
+*/
+
+void Pipsolar::decode_qpigs(const std::string &buffer) {
+    // 1. Remove the leading '(' and trailing CRC
+    std::string data = buffer.substr(1, buffer.size() - 4);
+    
+    // 2. Split by space into a vector
+    std::vector<std::string> tokens;
+    size_t start = 0, end = 0;
+    while ((end = data.find(' ', start)) != std::string::npos) {
+        tokens.push_back(data.substr(start, end - start));
+        start = end + 1;
+    }
+    tokens.push_back(data.substr(start)); // Add last token
+
+    // 3. Map to sensors using the NEW QPGS0 indexes
+    if (tokens.size() >= 25) { // Verify we got the long QPGS0 response
+        if (this->grid_voltage_ != nullptr) 
+            this->grid_voltage_->publish_state(atof(tokens[4].c_str()));
+        
+        if (this->battery_voltage_ != nullptr) 
+            this->battery_voltage_->publish_state(atof(tokens[11].c_str()));
+            
+        // Map 12kW specific dual PV inputs
+        if (this->pv1_input_voltage_ != nullptr)
+            this->pv1_input_voltage_->publish_state(atof(tokens[14].c_str()));
+            
+        if (this->pv2_input_voltage_ != nullptr)
+            this->pv2_input_voltage_->publish_state(atof(tokens[24].c_str()));
+    }
+}
+
+
+
+
+
+
 
 void Pipsolar::handle_qmod_(const char *message) {
   std::string mode;
@@ -849,19 +895,24 @@ void Pipsolar::update() {
 }
 
 void Pipsolar::add_polling_command_(const char *command, ENUMPollingCommand polling_command) {
+    std::string cmd = command;
+    if (cmd == "QPIGS") {
+        cmd = "QPGS0";
+    }
+
   for (auto &enabled_polling_command : this->enabled_polling_commands_) {
-    if (enabled_polling_command.length == strlen(command)) {
-      uint8_t len = strlen(command);
-      if (memcmp(enabled_polling_command.command, command, len) == 0) {
+    if (enabled_polling_command.length == strlen(cmd.c_str())) {
+      uint8_t len = strlen(cmd.c_str());
+      if (memcmp(enabled_polling_command.command, cmd.c_str(), len) == 0) {
         return;
       }
     }
     if (enabled_polling_command.length == 0) {
-      size_t length = strlen(command);
+      size_t length = strlen(cmd.c_str());
 
       enabled_polling_command.command = new uint8_t[length + 1];  // NOLINT(cppcoreguidelines-owning-memory)
       for (size_t i = 0; i < length + 1; i++) {
-        enabled_polling_command.command[i] = (uint8_t) command[i];
+        enabled_polling_command.command[i] = (uint8_t) cmd.c_str()[i];
       }
       enabled_polling_command.errors = 0;
       enabled_polling_command.identifier = polling_command;
