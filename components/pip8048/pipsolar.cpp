@@ -322,9 +322,9 @@ void Pipsolar::handle_qpiri_(const char *message) {
 
   // Fix bug in HVM12KP Inverter Communications Firmware
   if (this->ac_output_rating_apparent_power_->state == 1000)
-    this->ac_output_rating_apparent_power_->publish_state(12000);
+    this->ac_output_rating_apparent_power_->publish_state(11000);
   if (this->ac_output_rating_active_power_->state == 1000)
-    this->ac_output_rating_active_power_->publish_state(12000);
+    this->ac_output_rating_active_power_->publish_state(11000);
 
   this->read_float_sensor_(message, &pos, this->battery_rating_voltage_);
   this->read_float_sensor_(message, &pos, this->battery_recharge_voltage_);
