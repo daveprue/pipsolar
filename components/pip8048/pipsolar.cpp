@@ -288,7 +288,7 @@ void Pipsolar::handle_poll_response_(ENUMPollingCommand polling_command, const c
     case POLLING_QMN:
       handle_qmn_(message);
       break;
-    case POLLING_QPIGS2:
+    case POLLING_QPGS0:
       handle_qpgs0_(message);
       break;
     case POLLING_QBATCD:
