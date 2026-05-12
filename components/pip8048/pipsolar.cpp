@@ -318,9 +318,9 @@ void Pipsolar::handle_qpiri_(const char *message) {
   this->read_float_sensor_(message, &pos, this->ac_output_rating_current_);
 
   this->read_int_sensor_(message, &pos, this->ac_output_rating_apparent_power_);
-  this->ac_output_rating_apparent_power_.publish_state(11000);
+  this->ac_output_rating_apparent_power_->publish_state(11000);
   this->read_int_sensor_(message, &pos, this->ac_output_rating_active_power_);
-  this->ac_output_rating_active_power_.publish_state(11000);
+  this->ac_output_rating_active_power_->publish_state(11000);
 
   this->read_float_sensor_(message, &pos, this->battery_rating_voltage_);
   this->read_float_sensor_(message, &pos, this->battery_recharge_voltage_);
