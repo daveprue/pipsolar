@@ -422,7 +422,6 @@ void Pipsolar::handle_qpiri_(const char *message) {
 
 
 
-/*
 void Pipsolar::handle_qpigs_(const char *message) {
 
 
@@ -431,8 +430,16 @@ void Pipsolar::handle_qpigs_(const char *message) {
   }
 
   size_t pos = 0;
+
   this->skip_start_(message, &pos);
 
+  // New fields for QPGS0 - skip them to align pointer
+  this->read_field_(message, &pos); // Skip Parallel ID
+  this->read_field_(message, &pos); // Skip Serial Number
+  this->read_field_(message, &pos); // Skip Work Mode (single char)
+  this->read_field_(message, &pos); // Skip Fault Code
+
+  // Now the pointer is aligned with Grid Voltage
   this->read_float_sensor_(message, &pos, this->grid_voltage_);
   this->read_float_sensor_(message, &pos, this->grid_frequency_);
   this->read_float_sensor_(message, &pos, this->ac_output_voltage_);
@@ -477,38 +484,13 @@ void Pipsolar::handle_qpigs_(const char *message) {
   this->publish_binary_sensor_(this->get_bit_(device_status_2, 1), this->switch_on_);
   this->publish_binary_sensor_(this->get_bit_(device_status_2, 2), this->dustproof_installed_);
 
-}
-*/
+  // Capture 12kW Dual MPPT Data (PV2)
+  this->read_float_sensor_(message, &pos, this->pv2_input_voltage_);
+  this->read_float_sensor_(message, &pos, this->pv2_input_current_);
+  this->read_int_sensor_(message, &pos, this->pv2_charging_power_);
 
-void Pipsolar::decode_qpigs(const std::string &buffer) {
-    // 1. Remove the leading '(' and trailing CRC
-    std::string data = buffer.substr(1, buffer.size() - 4);
-    
-    // 2. Split by space into a vector
-    std::vector<std::string> tokens;
-    size_t start = 0, end = 0;
-    while ((end = data.find(' ', start)) != std::string::npos) {
-        tokens.push_back(data.substr(start, end - start));
-        start = end + 1;
-    }
-    tokens.push_back(data.substr(start)); // Add last token
-
-    // 3. Map to sensors using the NEW QPGS0 indexes
-    if (tokens.size() >= 25) { // Verify we got the long QPGS0 response
-        if (this->grid_voltage_ != nullptr) 
-            this->grid_voltage_->publish_state(atof(tokens[4].c_str()));
-        
-        if (this->battery_voltage_ != nullptr) 
-            this->battery_voltage_->publish_state(atof(tokens[11].c_str()));
-            
-        // Map 12kW specific dual PV inputs
-        if (this->pv1_input_voltage_ != nullptr)
-            this->pv1_input_voltage_->publish_state(atof(tokens[14].c_str()));
-            
-        if (this->pv2_input_voltage_ != nullptr)
-            this->pv2_input_voltage_->publish_state(atof(tokens[24].c_str()));
-    }
 }
+
 
 
 
