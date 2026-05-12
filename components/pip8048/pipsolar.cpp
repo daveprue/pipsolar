@@ -289,7 +289,7 @@ void Pipsolar::handle_poll_response_(ENUMPollingCommand polling_command, const c
       handle_qmn_(message);
       break;
     case POLLING_QPIGS2:
-      handle_qpigs2_(message);
+      handle_qpgs0_(message);
       break;
     case POLLING_QBATCD:
       handle_qbatcd_(message);
@@ -751,18 +751,18 @@ void Pipsolar::handle_qmn_(const char *message) {
   }
 }
 
-void Pipsolar::handle_qpigs2_(const char *message) {
+void Pipsolar::handle_qpgs0_(const char *message) {
   // Response format: '(pv2_current pv2_voltage pv2_charging_power'
-  if (this->last_qpigs2_) {
-    this->last_qpigs2_->publish_state(message);
+  if (this->last_qpgs0_) {
+    this->last_qpgs0_->publish_state(message);
   }
 
-  size_t pos = 0;
-  this->skip_start_(message, &pos);
-
-  this->read_float_sensor_(message, &pos, this->pv2_input_current_);
-  this->read_float_sensor_(message, &pos, this->pv2_input_voltage_);
-  this->read_int_sensor_(message, &pos, this->pv2_charging_power_);
+//  size_t pos = 0;
+//  this->skip_start_(message, &pos);
+//
+//  this->read_float_sensor_(message, &pos, this->pv2_input_current_);
+//  this->read_float_sensor_(message, &pos, this->pv2_input_voltage_);
+//  this->read_int_sensor_(message, &pos, this->pv2_charging_power_);
 }
 
 void Pipsolar::handle_qbatcd_(const char *message) {
@@ -877,24 +877,20 @@ void Pipsolar::update() {
 }
 
 void Pipsolar::add_polling_command_(const char *command, ENUMPollingCommand polling_command) {
-    std::string cmd = command;
-//    if (cmd == "QPIGS") {
-//        cmd = "QPGS0";
-//    }
 
   for (auto &enabled_polling_command : this->enabled_polling_commands_) {
-    if (enabled_polling_command.length == strlen(cmd.c_str())) {
-      uint8_t len = strlen(cmd.c_str());
-      if (memcmp(enabled_polling_command.command, cmd.c_str(), len) == 0) {
+    if (enabled_polling_command.length == strlen(command)) {
+      uint8_t len = strlen(command);
+      if (memcmp(enabled_polling_command.command, command, len) == 0) {
         return;
       }
     }
     if (enabled_polling_command.length == 0) {
-      size_t length = strlen(cmd.c_str());
+      size_t length = strlen(command);
 
       enabled_polling_command.command = new uint8_t[length + 1];  // NOLINT(cppcoreguidelines-owning-memory)
       for (size_t i = 0; i < length + 1; i++) {
-        enabled_polling_command.command[i] = (uint8_t) cmd.c_str()[i];
+        enabled_polling_command.command[i] = (uint8_t) command[i];
       }
       enabled_polling_command.errors = 0;
       enabled_polling_command.identifier = polling_command;

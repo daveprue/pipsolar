@@ -18,7 +18,7 @@ class PipsolarSelect;
 enum ENUMPollingCommand {
   POLLING_QPIRI = 0,
   POLLING_QPIGS = 1,
-  POLLING_QPIGS2 = 2,
+  POLLING_QPGS0 = 2,
   POLLING_QMOD = 3,
   POLLING_QFLAG = 4,
   POLLING_QPIWS = 5,
@@ -96,10 +96,10 @@ class Pipsolar : public uart::UARTDevice, public PollingComponent {
   PIPSOLAR_BINARY_SENSOR(switch_on, QPIGS)
   PIPSOLAR_BINARY_SENSOR(dustproof_installed, QPIGS)
 
-  // QPIGS2 values (second MPPT/PV input)
-  PIPSOLAR_SENSOR(pv2_input_current, QPIGS2)
-  PIPSOLAR_SENSOR(pv2_input_voltage, QPIGS2)
-  PIPSOLAR_SENSOR(pv2_charging_power, QPIGS2)
+  // QPGS0 values (second MPPT/PV input)
+  PIPSOLAR_SENSOR(pv2_input_current, QPGS0)
+  PIPSOLAR_SENSOR(pv2_input_voltage, QPGS0)
+  PIPSOLAR_SENSOR(pv2_charging_power, QPGS0)
 
   // QPIRI values
   PIPSOLAR_SENSOR(grid_rating_voltage, QPIRI)
@@ -186,7 +186,7 @@ class Pipsolar : public uart::UARTDevice, public PollingComponent {
   PIPSOLAR_BINARY_SENSOR(charge_onoff, QBATCD)
 
   PIPSOLAR_TEXT_SENSOR(last_qpigs, QPIGS)
-  PIPSOLAR_TEXT_SENSOR(last_qpigs2, QPIGS2)
+  PIPSOLAR_TEXT_SENSOR(last_qpgs0, QPIGS2)
   PIPSOLAR_TEXT_SENSOR(last_qpiri, QPIRI)
   PIPSOLAR_TEXT_SENSOR(last_qmod, QMOD)
   PIPSOLAR_TEXT_SENSOR(last_qflag, QFLAG)
@@ -238,7 +238,7 @@ class Pipsolar : public uart::UARTDevice, public PollingComponent {
   void handle_qpiws_(const char *message);
   void handle_qt_(const char *message);
   void handle_qmn_(const char *message);
-  void handle_qpigs2_(const char *message);
+  void handle_qpgs0_(const char *message);
   void handle_qbatcd_(const char *message);
 
   void skip_start_(const char *message, size_t *pos);
