@@ -282,20 +282,6 @@ TYPES = {
         device_class=DEVICE_CLASS_TEMPERATURE,
         state_class=STATE_CLASS_MEASUREMENT,
     ),
-    CONF_PV1_INPUT_CURRENT: sensor.sensor_schema(
-        unit_of_measurement=UNIT_AMPERE,
-        icon=ICON_SOLAR_PANEL,
-        accuracy_decimals=1,
-        device_class=DEVICE_CLASS_CURRENT,
-        state_class=STATE_CLASS_MEASUREMENT,
-    ),
-    CONF_PV1_INPUT_VOLTAGE: sensor.sensor_schema(
-        unit_of_measurement=UNIT_VOLT,
-        icon=ICON_SOLAR_PANEL,
-        accuracy_decimals=1,
-        device_class=DEVICE_CLASS_VOLTAGE,
-        state_class=STATE_CLASS_MEASUREMENT,
-    ),
     CONF_BATTERY_VOLTAGE_SCC: sensor.sensor_schema(
         unit_of_measurement=UNIT_VOLT,
         accuracy_decimals=2,
@@ -317,6 +303,20 @@ TYPES = {
     ),
     CONF_EEPROM_VERSION: sensor.sensor_schema(
         accuracy_decimals=0,
+    ),
+    CONF_PV1_INPUT_CURRENT: sensor.sensor_schema(
+        unit_of_measurement=UNIT_AMPERE,
+        icon=ICON_SOLAR_PANEL,
+        accuracy_decimals=1,
+        device_class=DEVICE_CLASS_CURRENT,
+        state_class=STATE_CLASS_MEASUREMENT,
+    ),
+    CONF_PV1_INPUT_VOLTAGE: sensor.sensor_schema(
+        unit_of_measurement=UNIT_VOLT,
+        icon=ICON_SOLAR_PANEL,
+        accuracy_decimals=1,
+        device_class=DEVICE_CLASS_VOLTAGE,
+        state_class=STATE_CLASS_MEASUREMENT,
     ),
     CONF_PV1_CHARGING_POWER: sensor.sensor_schema(
         unit_of_measurement=UNIT_WATT,
