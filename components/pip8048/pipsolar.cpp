@@ -434,10 +434,10 @@ void Pipsolar::handle_qpigs_(const char *message) {
   this->skip_start_(message, &pos);
 
   // New fields for QPGS0 - skip them to align pointer
-  this->read_field_(message, &pos); // Skip Parallel ID
-  this->read_field_(message, &pos); // Skip Serial Number
-  this->read_field_(message, &pos); // Skip Work Mode (single char)
-  this->read_field_(message, &pos); // Skip Fault Code
+//  this->read_field_(message, &pos); // Skip Parallel ID
+//  this->read_field_(message, &pos); // Skip Serial Number
+//  this->read_field_(message, &pos); // Skip Work Mode (single char)
+//  this->read_field_(message, &pos); // Skip Fault Code
 
   // Now the pointer is aligned with Grid Voltage
   this->read_float_sensor_(message, &pos, this->grid_voltage_);
@@ -878,9 +878,9 @@ void Pipsolar::update() {
 
 void Pipsolar::add_polling_command_(const char *command, ENUMPollingCommand polling_command) {
     std::string cmd = command;
-    if (cmd == "QPIGS") {
-        cmd = "QPGS0";
-    }
+//    if (cmd == "QPIGS") {
+//        cmd = "QPGS0";
+//    }
 
   for (auto &enabled_polling_command : this->enabled_polling_commands_) {
     if (enabled_polling_command.length == strlen(cmd.c_str())) {
