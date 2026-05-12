@@ -485,9 +485,9 @@ void Pipsolar::handle_qpigs_(const char *message) {
   this->publish_binary_sensor_(this->get_bit_(device_status_2, 2), this->dustproof_installed_);
 
   // Capture 12kW Dual MPPT Data (PV2)
-  this->read_float_sensor_(message, &pos, this->pv2_input_voltage_);
-  this->read_float_sensor_(message, &pos, this->pv2_input_current_);
-  this->read_int_sensor_(message, &pos, this->pv2_charging_power_);
+//  this->read_float_sensor_(message, &pos, this->pv2_input_voltage_);
+//  this->read_float_sensor_(message, &pos, this->pv2_input_current_);
+//  this->read_int_sensor_(message, &pos, this->pv2_charging_power_);
 
 }
 
