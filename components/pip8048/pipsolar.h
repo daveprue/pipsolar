@@ -36,7 +36,7 @@ struct PollingCommand {
 
 struct QFLAGValues {
   esphome::optional<bool> silence_buzzer_open_buzzer;
-  esphome::optional<bool> overload_bypass_function;
+  //esphome::optional<bool> overload_bypass_function;
   esphome::optional<bool> lcd_escape_to_default;
   esphome::optional<bool> overload_restart_function;
   esphome::optional<bool> over_temperature_restart_function;
@@ -133,7 +133,7 @@ class Pipsolar : public uart::UARTDevice, public PollingComponent {
 
   // QFLAG values
   PIPSOLAR_BINARY_SENSOR(silence_buzzer_open_buzzer, QFLAG)
-  PIPSOLAR_BINARY_SENSOR(overload_bypass_function, QFLAG)
+  //PIPSOLAR_BINARY_SENSOR(overload_bypass_function, QFLAG)
   PIPSOLAR_BINARY_SENSOR(lcd_escape_to_default, QFLAG)
   PIPSOLAR_BINARY_SENSOR(overload_restart_function, QFLAG)
   PIPSOLAR_BINARY_SENSOR(over_temperature_restart_function, QFLAG)
