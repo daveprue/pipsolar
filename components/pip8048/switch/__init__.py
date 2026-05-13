@@ -14,7 +14,6 @@ CONF_OUTPUT_SOURCE_PRIORITY_HYBRID = "output_source_priority_hybrid"
 CONF_INPUT_VOLTAGE_RANGE = "input_voltage_range"
 CONF_PV_OK_CONDITION_FOR_PARALLEL = "pv_ok_condition_for_parallel"
 CONF_PV_POWER_BALANCE = "pv_power_balance"
-CONF_OVERLOAD_BYPASS = "overload_bypass_function"
 
 TYPES = {
     CONF_OUTPUT_SOURCE_PRIORITY_UTILITY: ("POP00", None),
@@ -24,7 +23,6 @@ TYPES = {
     CONF_INPUT_VOLTAGE_RANGE: ("PGR01", "PGR00"),
     CONF_PV_OK_CONDITION_FOR_PARALLEL: ("PPVOKC1", "PPVOKC0"),
     CONF_PV_POWER_BALANCE: ("PSPB1", "PSPB0"),
-    CONF_OVERLOAD_BYPASS: ("PEb", "PDb"),
 }
 
 PipsolarSwitch = pipsolar_ns.class_("PipsolarSwitch", switch.Switch, cg.Component)
