@@ -90,16 +90,11 @@ class Pipsolar : public uart::UARTDevice, public PollingComponent {
   PIPSOLAR_BINARY_SENSOR(scc_charging_status, QPIGS)
   PIPSOLAR_BINARY_SENSOR(ac_charging_status, QPIGS)
   PIPSOLAR_SENSOR(battery_voltage_offset_for_fans_on, QPIGS)  //.1 scale
-  PIPSOLAR_SENSOR(eeprom_version, QPIGS)
-  PIPSOLAR_SENSOR(pv1_charging_power, QPIGS)
+  PIPSOLAR_SENSOR(pv2_input_current, QPIGS)
+  PIPSOLAR_SENSOR(pv_total_power, QPIGS)
   PIPSOLAR_BINARY_SENSOR(charging_to_floating_mode, QPIGS)
   PIPSOLAR_BINARY_SENSOR(switch_on, QPIGS)
   PIPSOLAR_BINARY_SENSOR(dustproof_installed, QPIGS)
-
-  // QPGS0 values (second MPPT/PV input)
-  PIPSOLAR_SENSOR(pv2_input_current, QPGS0)
-  PIPSOLAR_SENSOR(pv2_input_voltage, QPGS0)
-  PIPSOLAR_SENSOR(pv2_charging_power, QPGS0)
 
   // QPIRI values
   PIPSOLAR_SENSOR(grid_rating_voltage, QPIRI)

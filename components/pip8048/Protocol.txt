@@ -1,0 +1,24 @@
+
+QPIGS Response from HVM12KP
+==============================
+Grid Voltage (V)
+Grid Frequency (Hz)
+AC Output Voltage (V)
+AC Output Frequency (Hz)
+AC Output Apparent Power (VA)
+AC Output Active Power (W)
+Output Load Percent (%)
+BUS Voltage (V)
+Battery Voltage (V)
+Battery Charging Current (A)
+Battery Capacity (%)
+Inverter Heat Sink Temperature (°C)
+PV1 Input Charging Current (A)
+PV1 Input Voltage (V)
+Battery Voltage from SCC (V)
+Battery Discharge Current (A)
+Device Status Flags (8-digit binary string)
+Battery Voltage Offset for Parallel Units
+PV2 Input Charging Current (A)
+Total Combined PV Charging Power (Watts)
+Device Status Flags 2 (Floating, Switch On, Dustproof)

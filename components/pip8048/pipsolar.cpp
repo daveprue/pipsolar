@@ -288,9 +288,6 @@ void Pipsolar::handle_poll_response_(ENUMPollingCommand polling_command, const c
     case POLLING_QMN:
       handle_qmn_(message);
       break;
-    case POLLING_QPGS0:
-      handle_qpgs0_(message);
-      break;
     case POLLING_QBATCD:
       handle_qbatcd_(message);
       break;
@@ -433,12 +430,6 @@ void Pipsolar::handle_qpigs_(const char *message) {
 
   this->skip_start_(message, &pos);
 
-  // New fields for QPGS0 - skip them to align pointer
-//  this->read_field_(message, &pos); // Skip Parallel ID
-//  this->read_field_(message, &pos); // Skip Serial Number
-//  this->read_field_(message, &pos); // Skip Work Mode (single char)
-//  this->read_field_(message, &pos); // Skip Fault Code
-
   // Now the pointer is aligned with Grid Voltage
   this->read_float_sensor_(message, &pos, this->grid_voltage_);
   this->read_float_sensor_(message, &pos, this->grid_frequency_);
@@ -476,8 +467,8 @@ void Pipsolar::handle_qpigs_(const char *message) {
   if (this->battery_voltage_offset_for_fans_on_) {
     this->battery_voltage_offset_for_fans_on_->publish_state(battery_voltage_offset_for_fans_on.value_or(NAN) / 10.0f);
   }
-  this->read_int_sensor_(message, &pos, this->eeprom_version_);
-  this->read_int_sensor_(message, &pos, this->pv1_charging_power_);
+  this->read_int_sensor_(message, &pos, this->pv2_input_current_);
+  this->read_int_sensor_(message, &pos, this->pv_total_power_);
 
   std::string device_status_2 = this->read_field_(message, &pos);
   this->publish_binary_sensor_(this->get_bit_(device_status_2, 0), this->charging_to_floating_mode_);
