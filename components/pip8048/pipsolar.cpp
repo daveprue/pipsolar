@@ -467,18 +467,13 @@ void Pipsolar::handle_qpigs_(const char *message) {
   if (this->battery_voltage_offset_for_fans_on_) {
     this->battery_voltage_offset_for_fans_on_->publish_state(battery_voltage_offset_for_fans_on.value_or(NAN) / 10.0f);
   }
-  this->read_int_sensor_(message, &pos, this->pv2_input_current_);
-  this->read_int_sensor_(message, &pos, this->pv_total_power_);
+  this->read_float_sensor_(message, &pos, this->pv2_input_current_);
+  this->read_float_sensor_(message, &pos, this->pv_total_power_);
 
   std::string device_status_2 = this->read_field_(message, &pos);
   this->publish_binary_sensor_(this->get_bit_(device_status_2, 0), this->charging_to_floating_mode_);
   this->publish_binary_sensor_(this->get_bit_(device_status_2, 1), this->switch_on_);
   this->publish_binary_sensor_(this->get_bit_(device_status_2, 2), this->dustproof_installed_);
-
-  // Capture 12kW Dual MPPT Data (PV2)
-//  this->read_float_sensor_(message, &pos, this->pv2_input_voltage_);
-//  this->read_float_sensor_(message, &pos, this->pv2_input_current_);
-//  this->read_int_sensor_(message, &pos, this->pv2_charging_power_);
 
 }
 
